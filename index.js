@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+const controller = require('./controller/formController');
+
 app.set('views', __dirname + '/view');
 app.set('view engine', 'ejs');
 
@@ -13,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    console.log(req.body);
+    controller(req.body.name, req.body.title, req.body.body);
     res.end();
 });
 
