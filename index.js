@@ -11,12 +11,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
+    controller('name', 'title', 'body');
     res.render('./index');
 });
 
 app.post('/', (req, res) => {
-    controller(req.body.name, req.body.title, req.body.body);
-    res.end();
+    try {
+        controller(req.body.name, req.body.title, req.body.body);
+        res.render('./index');
+    } catch (e) {
+        alert(e);
+        res.end();
+    }
 });
 
 app.listen(3000);
